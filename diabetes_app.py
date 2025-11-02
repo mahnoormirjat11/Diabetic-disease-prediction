@@ -51,7 +51,7 @@ for col in df.select_dtypes(include=["object"]).columns:
     df[col] = le.fit_transform(df[col])
 
 # Fill missing values
-df = df.fillna(df.median())
+df = df.fillna(df.median(numeric_only=True))
 
 # Separate features and target
 X = df.drop(target_col, axis=1)
@@ -162,7 +162,12 @@ st.subheader("🎯 Prediction Result")
 result_label = np.array(["Not Diabetic", "Diabetic"])
 st.success(f"Prediction: **{result_label[prediction][0]}**")
 
+# Display probabilities
 st.write("### 📊 Prediction Probability")
-st.dataframe(
-    pd.DataFrame(prediction_proba, columns=["Not Diabetic", "Diabetic"])
-)
+proba_df = pd.DataFrame(prediction_proba, columns=["Not Diabetic", "Diabetic"])
+st.dataframe(proba_df)
+
+# ---------------------------------------------------------------
+# ✅ End of App
+# ---------------------------------------------------------------
+st.caption("Made with ❤️ by Mahnoor — Powered by Streamlit & XGBoost")
