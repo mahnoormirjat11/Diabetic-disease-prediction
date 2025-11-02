@@ -150,6 +150,9 @@ def user_input():
 input_df = user_input()
 st.write("### 🧾 User Input Data", input_df)
 
+# 🔧 Match input with training features
+input_df = input_df.reindex(columns=X.columns, fill_value=0)
+
 # Preprocess input
 input_scaled = scaler.transform(input_df)
 
@@ -162,12 +165,5 @@ st.subheader("🎯 Prediction Result")
 result_label = np.array(["Not Diabetic", "Diabetic"])
 st.success(f"Prediction: **{result_label[prediction][0]}**")
 
-# Display probabilities
 st.write("### 📊 Prediction Probability")
-proba_df = pd.DataFrame(prediction_proba, columns=["Not Diabetic", "Diabetic"])
-st.dataframe(proba_df)
-
-# ---------------------------------------------------------------
-# ✅ End of App
-# ---------------------------------------------------------------
-st.caption("Made with ❤️ by Mahnoor — Powered by Streamlit & XGBoost")
+st.dataframe(pd.DataFrame(prediction_proba, columns=["Not Diabetic", "Diabetic"]))
