@@ -9,8 +9,8 @@ from sklearn.metrics import accuracy_score
 st.title("🩺 Diabetes Disease Prediction App")
 st.info("This app predicts whether a person is likely to have diabetes based on health data.")
 
-# Load dataset
-df = pd.read_csv("https://github.com/mahnoormirjat11/Diabetic-disease-prediction/blob/main/diabetes_prediction_dataset.csv")
+df = pd.read_csv("https://raw.githubusercontent.com/mahnoormirjat11/Diabetic-disease-prediction/main/diabetes_prediction_dataset.csv")
+
 
 # Display data
 with st.expander("📊 View Dataset"):
